@@ -3,43 +3,42 @@ package com.example.todolisttutorial
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.Editable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.todolisttutorial.databinding.FragmentNewTaskSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import java.sql.Time
 import java.time.LocalTime
 
-class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment()
+class NovaAtividade(var itemAtividade: ItemAtividade?) : BottomSheetDialogFragment()
 {
     private lateinit var binding: FragmentNewTaskSheetBinding
-    private lateinit var taskViewModel: TaskViewModel
+    private lateinit var atividadeViewModel: AtividadeViewModel
     private var dueTime: LocalTime? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val activity = requireActivity()
 
-        if (taskItem != null)
+        if (itemAtividade != null)
         {
-            binding.taskTitle.text = "Edit Task"
+            binding.taskTitle.text = "Editar Atividade"
             val editable = Editable.Factory.getInstance()
-            binding.name.text = editable.newEditable(taskItem!!.name)
-            binding.desc.text = editable.newEditable(taskItem!!.desc)
-            if(taskItem!!.dueTime != null){
-                dueTime = taskItem!!.dueTime!!
+            binding.name.text = editable.newEditable(itemAtividade!!.name)
+            binding.desc.text = editable.newEditable(itemAtividade!!.desc)
+            binding.responsavel.text = editable.newEditable((itemAtividade!!.resp))
+            if(itemAtividade!!.dueTime != null){
+                dueTime = itemAtividade!!.dueTime!!
                 updateTimeButtonText()
             }
         }
         else
         {
-            binding.taskTitle.text = "New Task"
+            binding.taskTitle.text = "Nova Atividade"
         }
 
-        taskViewModel = ViewModelProvider(activity).get(TaskViewModel::class.java)
+        atividadeViewModel = ViewModelProvider(activity).get(AtividadeViewModel::class.java)
         binding.saveButton.setOnClickListener {
             saveAction()
         }
@@ -75,14 +74,16 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment()
     {
         val name = binding.name.text.toString()
         val desc = binding.desc.text.toString()
-        if(taskItem == null)
+        val responsavel = binding.responsavel.text.toString()
+
+        if(itemAtividade == null)
         {
-            val newTask = TaskItem(name,desc,dueTime,null)
-            taskViewModel.addTaskItem(newTask)
+            val newTask = ItemAtividade(name,desc,responsavel,dueTime)
+            atividadeViewModel.addTaskItem(newTask)
         }
         else
         {
-            taskViewModel.updateTaskItem(taskItem!!.id, name, desc, dueTime)
+            atividadeViewModel.updateTaskItem(itemAtividade!!.id, name, desc,responsavel, dueTime)
         }
         binding.name.setText("")
         binding.desc.setText("")

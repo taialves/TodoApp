@@ -9,16 +9,16 @@ import com.example.todolisttutorial.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), TaskItemClickListener
 {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var taskViewModel: TaskViewModel
+    private lateinit var atividadeViewModel: AtividadeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
+        atividadeViewModel = ViewModelProvider(this).get(AtividadeViewModel::class.java)
         binding.newTaskButton.setOnClickListener {
-            NewTaskSheet(null).show(supportFragmentManager, "newTaskTag")
+            NovaAtividade(null).show(supportFragmentManager, "newTaskTag")
         }
         setRecyclerView()
     }
@@ -26,23 +26,24 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener
     private fun setRecyclerView()
     {
         val mainActivity = this
-        taskViewModel.taskItems.observe(this){
+        atividadeViewModel.itemsAtividade.observe(this){
             binding.todoListRecyclerView.apply {
                 layoutManager = LinearLayoutManager(applicationContext)
-                adapter = TaskItemAdapter(it, mainActivity)
+                adapter = ItemAtividadeAdapter(it, mainActivity)
             }
         }
     }
 
-    override fun editTaskItem(taskItem: TaskItem)
+    override fun editTaskItem(itemAtividade: ItemAtividade)
     {
-        NewTaskSheet(taskItem).show(supportFragmentManager,"newTaskTag")
+        NovaAtividade(itemAtividade).show(supportFragmentManager,"newTaskTag")
     }
 
-    override fun completeTaskItem(taskItem: TaskItem)
-    {
-        taskViewModel.setCompleted(taskItem)
+    override fun deleteTaskItem(itemAtividade: ItemAtividade) {
+        atividadeViewModel.deleteTaskItem(itemAtividade.id)
     }
+
+
 }
 
 

@@ -2,6 +2,6 @@ package com.example.todolisttutorial
 
 interface TaskItemClickListener
 {
-    fun editTaskItem(taskItem: TaskItem)
-    fun completeTaskItem(taskItem: TaskItem)
+    fun editTaskItem(itemAtividade: ItemAtividade)
+    fun deleteTaskItem(itemAtividade: ItemAtividade)
 }

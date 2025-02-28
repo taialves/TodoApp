@@ -1,50 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/taskCellContainer"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
-    app:cardCornerRadius="5dp"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:cardBackgroundColor="#24306D"
+    app:cardCornerRadius="5dp">
 
     <LinearLayout
-        android:orientation="horizontal"
+
+        android:id="@+id/taskContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleY="1.5"
-            android:scaleX="1.5"
-            android:contentDescription="@string/checkbox"
-            android:id="@+id/completeButton"
-            android:layout_marginHorizontal="15dp"
-            android:src="@drawable/unchecked_24"
-            android:backgroundTint="@android:color/transparent"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/name"
-            android:text="@string/place_holder"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            />
+            <ImageButton
+                android:id="@+id/expandButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="15dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/checkbox"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@android:drawable/arrow_down_float"
+                android:tint="#66BDE6" />
 
-        <TextView
-            android:layout_marginHorizontal="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dueTime"
-            android:text="@string/place_holder"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_gravity="center"
-            />
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="20"
+                android:text="@string/place_holder"
+                android:textColor="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/deleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#00FFFFFF"
+                android:tint="@android:color/transparent"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="#4D557A"
+            app:contentPadding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/responsavelText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tailson Alves"
+                        android:textAlignment="viewStart"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dueTime"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="5dp"
+                        android:fontFamily="monospace"
+                        android:text="12:50"
+                        android:textAlignment="textEnd"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="normal|bold"
+                        android:typeface="monospace" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/taskDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:text="Descrição da Atividade"
+                    android:textColor="#E0E0E0"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
