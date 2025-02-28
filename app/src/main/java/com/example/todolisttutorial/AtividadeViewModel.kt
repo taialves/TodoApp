@@ -13,6 +13,7 @@ class AtividadeViewModel: ViewModel()
         itemsAtividade.value = mutableListOf()
     }
 
+    // Função para criar nova atividade
     fun addTaskItem(newTask: ItemAtividade)
     {
         val list = itemsAtividade.value
@@ -20,12 +21,14 @@ class AtividadeViewModel: ViewModel()
         itemsAtividade.postValue(list)
     }
 
+    // Função para deletar atividade
     fun deleteTaskItem(id: UUID) {
         val list = itemsAtividade.value ?: return // Verifica se a lista não é nula
         val updatedList = list.filter { it.id != id }.toMutableList() // Filtra e remove o item
         itemsAtividade.postValue(updatedList) // Atualiza a LiveData
     }
 
+    // Função para editar uma atividade
     fun updateTaskItem(id: UUID, name: String, desc: String, resp: String, dueTime: LocalTime?)
     {
         val list = itemsAtividade.value
