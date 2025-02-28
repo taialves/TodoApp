@@ -42,10 +42,10 @@ O projeto **Agenda Acadêmica** é um aplicativo para gerenciar atividades acad�
 ## 🖼️ Capturas de Tela  
 
 ### 📌 **Tela de Cadastro**  
-![Nova Atividade](https://github.com/taialves/TodoApp/blob/main/screenshots/nova_atividade.png)
+![Nova Atividade](https://github.com/taialves/TodoApp/blob/TodoApp/novatarefa.png)
 
 ### 📌 **Tela de Listagem**  
-![Lista de Atividades](https://github.com/taialves/TodoApp/blob/main/screenshots/lista_atividades.png)
+![Lista de Atividades](https://github.com/taialves/TodoApp/blob/TodoApp/lista.png)
 
 ---
 
